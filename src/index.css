@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #f3f3f3;
+    scrollbar-width: thin;
+    @apply scrollbar scrollbar-w-[3px] scrollbar-thumb-[#31759a] scrollbar-track-zinc-300 scroll-smooth
+}
+
+.app_name, .name, .category-name {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.overview {
+    scrollbar-width: thin;
+}
