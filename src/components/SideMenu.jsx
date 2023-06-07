@@ -7,15 +7,24 @@ import { TiPlus } from 'react-icons/ti'
 import { GoPrimitiveDot } from 'react-icons/go'
 import { BsCalendarRange, BsThreeDotsVertical } from 'react-icons/bs'
 import NewCategory from './NewCategory'
-import { Link, useLocation } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import useAuthStore from '../store/authStore'
 
 
 const SideMenu = () => {
     const { pathname } = useLocation();
     const currentRoute = pathname.split('/')[1];
 
+    const navigate = useNavigate()
+    const logout = useAuthStore((state) => state.logout); // Accessing setUser method
+    
+
     // console.log(currentRoute);
+    const HandleLogout =  () => {
+        logout()
+        localStorage.removeItem('session')
+        navigate('/');
+    }
     return (
          <div className='bg-white pt-6 pb-10 shadow-sm h-full'>
             <div className="current_user flex items-center gap-1 mb-4 px-4">
@@ -153,10 +162,13 @@ const SideMenu = () => {
                         <MdManageAccounts className='text-[14px]' />
                         Account
                     </li>
-                    <li className='flex items-center gap-3 text-[12px] font-medium py-[0.75rem] px-4 capitalize text-zinc-600'>
+                    <button
+                        onClick={HandleLogout}
+                        className='w-[100%] flex items-center gap-3 text-[12px] font-medium py-[0.75rem] px-4 capitalize text-zinc-600 '
+                    >
                         <HiOutlineLogout className='text-[14px]' />
                         Logout
-                    </li>
+                    </button>
                 </ul>
             </div>
         </div>
